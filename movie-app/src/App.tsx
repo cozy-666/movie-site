@@ -66,18 +66,47 @@ function App() {
 
   return (
     <div>
-      <div>{keyword}</div>
-      <input type="text" onChange={(e) => setKeyword(e.target.value)}/>
-        {movieList
-        .filter((movie) => movie.original_title.includes(keyword))
-        .map((movie) =>(
-          <Link to={`/movies/${movie.id}`} key={movie.id}>
-            <p>{movie.original_title}</p>
-            <img src={`https://media.themoviedb.org/t/p/w600_and_h900_face${movie.poster_path}`}/>
-            <p>{movie.overview}</p>
-          </Link>
-        ))}
+      <section className="hero-section">
+        {heroImage && (
+          <>
+            <img className="hero-section-bg" src={heroImage} alt={heroTitle} />
+            <div className="hero-section-gradient" />
+          </>
+        )}
+        <div className="hero-section-content">
+          <h1 className="hero-section-title">{heroTitle}</h1>
+          <div className="hero-section-badges">
+            <span className="hero-section-badge">{heroYear}</span>
+          </div>
+          {heroOverview && (
+            <p className="hero-section-overview">{heroOverview}</p>
+          )}
+          <div className="hero-section-actions">
+            <button className="hero-section-btn hero-section-btn-primary">
+              <span>▶ Play</span>
+            </button>
+            <button className="hero-section-btn hero-section-btn-secondary">
+              <span>More Info</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="movie-row-section">
+        <h2 className="movie-row-title">
+          {keyword ? `「${keyword}」の検索結果` : "人気映画"}
+        </h2>
+        <div className="movie-row-scroll">
+        </div>
+      </section>
+      <div className="app-search-wrap">
+        <input
+          type="text"
+          className="app-search"
+          placeholder="映画タイトルで検索..."
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+      </div>
     </div>
-  )
+  );
 }
 export default App
