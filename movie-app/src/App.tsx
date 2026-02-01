@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css'
+import { Link } from 'react-router';
 
 type Movie = {
   id: string;
@@ -63,14 +64,13 @@ function App() {
         {movieList
         .filter((movie) => movie.original_title.includes(keyword))
         .map((movie) =>(
-          <div key={movie.id}>
+          <Link to={`/movies/${movie.id}`} key={movie.id}>
             <p>{movie.original_title}</p>
             <img src={`https://media.themoviedb.org/t/p/w600_and_h900_face${movie.poster_path}`}/>
             <p>{movie.overview}</p>
-          </div>
+          </Link>
         ))}
     </div>
   )
 }
-
 export default App
