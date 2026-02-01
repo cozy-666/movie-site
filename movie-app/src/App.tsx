@@ -30,12 +30,14 @@ function App() {
     }
 
   ];
+
   const [keyword, setKeyword] = useState("");
+
   return (
     <div>
       <div>{keyword}</div>
       <input type="text" onChange={(e) => setKeyword(e.target.value)}/>
-        {defaultMovieList.map((movie) => (
+        {defaultMovieList.filter((movie) => movie.name.includes(keyword)).map((movie) =>(
           <div key={movie.id}>
             <p>{movie.name}</p>
             <img src={movie.image}/>
