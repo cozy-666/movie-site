@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 
 function App() {
@@ -32,6 +32,23 @@ function App() {
   ];
 
   const [keyword, setKeyword] = useState("");
+
+  const fetchMovieList = async() => {
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?language=ja-JP&page=1',
+      {
+        headers:{
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  };
+
+  useEffect(()=>{
+    fetchMovieList()
+  },[])
 
   return (
     <div>
