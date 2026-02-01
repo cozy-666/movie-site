@@ -30,12 +30,12 @@ function App() {
 
   ];
 
-  var keyword ="";
+  var keyword = "";
 
   return (
     <div>
-      <input type="text" />
-      <button onClick={() => {alert("hello")}}>click</button>
+      <div>{keyword}</div>
+      <input type="text" onChange={(e) => (keyword = e.target.value)}/>
         {defaultMovieList.map((movie) => (
           <div key={movie.id}>
             <p>{movie.name}</p>
