@@ -2,8 +2,8 @@ import './App.css'
 
 function App() {
   //javascript
-  alert("hello world");
-  
+  // alert("hello world");
+
   return (
     <>
     <h1>Hello world</h1>
