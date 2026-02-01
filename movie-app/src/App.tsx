@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 
 function App() {
@@ -29,13 +30,11 @@ function App() {
     }
 
   ];
-
-  var keyword = "";
-
+  const [keyword, setKeyword] = useState("");
   return (
     <div>
       <div>{keyword}</div>
-      <input type="text" onChange={(e) => (keyword = e.target.value)}/>
+      <input type="text" onChange={(e) => setKeyword(e.target.value)}/>
         {defaultMovieList.map((movie) => (
           <div key={movie.id}>
             <p>{movie.name}</p>
