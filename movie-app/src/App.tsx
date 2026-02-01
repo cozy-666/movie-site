@@ -33,9 +33,13 @@ function App() {
   return (
     <div>
       <div>
-        <p>{defaultMovieList[0].name}</p>
-        <img src={defaultMovieList[0].image}/>
-        <p>{defaultMovieList[0].overview}</p>
+        {defaultMovieList.map((movie) => (
+          <div>
+            <p>{movie.name}</p>
+            <img src={movie.image}/>
+            <p>{movie.overview}</p>
+          </div>
+        ))}
       </div>
     </div>
   )
