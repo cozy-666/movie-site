@@ -31,9 +31,13 @@ function App() {
   ]
 
   return (
-    <>
-    <h1>Hello world</h1>
-    </>
+    <div>
+      <div>
+        <p>{defaultMovieList[0].name}</p>
+        <img src={defaultMovieList[0].image}/>
+        <p>{defaultMovieList[0].overview}</p>
+      </div>
+    </div>
   )
 }
 
