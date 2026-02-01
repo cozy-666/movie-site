@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import './App.css'
-import { Link } from 'react-router';
+import { useEffect, useState } from "react";
+import "./App.css";
+import MovieCard from "./MovieCard";
 
 type Movie = {
   id: string;
@@ -30,7 +30,7 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
-  const fetchMovieList = async() => {
+  const fetchMovieList = async () => {
     let url = "";
     if (keyword) {
       url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ja&page=1`;
@@ -42,6 +42,7 @@ function App() {
         Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
       },
     });
+
     const data = await response.json();
     setMovieList(
       data.results.map((movie: MovieJson) => ({
@@ -53,9 +54,9 @@ function App() {
     );
   };
 
-  useEffect(()=>{
-    fetchMovieList()
-  },[keyword])
+  useEffect(() => {
+    fetchMovieList();
+  }, [keyword]);
 
   const heroTitle = "君の名は。";
   const heroYear = 2016;
@@ -96,6 +97,9 @@ function App() {
           {keyword ? `「${keyword}」の検索結果` : "人気映画"}
         </h2>
         <div className="movie-row-scroll">
+          {movieList.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
         </div>
       </section>
       <div className="app-search-wrap">
@@ -109,4 +113,5 @@ function App() {
     </div>
   );
 }
-export default App
+
+export default App;
