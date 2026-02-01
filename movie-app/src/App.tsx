@@ -30,14 +30,17 @@ function App() {
   const [movieList, setMovieList] = useState<Movie[]>([]);
 
   const fetchMovieList = async() => {
-    const response = await fetch(
-      'https://api.themoviedb.org/3/movie/popular?language=ja-JP&page=1',
-      {
-        headers:{
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
-        },
-      }
-    );
+    let url = "";
+    if (keyword) {
+      url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ja&page=1`;
+    } else {
+      url = "https://api.themoviedb.org/3/movie/popular?language=ja&page=1";
+    }
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+      },
+    });
     const data = await response.json();
     setMovieList(
       data.results.map((movie: MovieJson) => ({
@@ -51,7 +54,7 @@ function App() {
 
   useEffect(()=>{
     fetchMovieList()
-  },[])
+  },[keyword])
 
   return (
     <div>
