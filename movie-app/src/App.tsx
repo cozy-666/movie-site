@@ -29,13 +29,13 @@ function App() {
     }
 
   ];
-  //const: 再代入できない
-  //var: 再代入可能
+
   var keyword ="";
 
   return (
     <div>
       <input type="text" />
+      <button onClick={() => {alert("hello")}}>click</button>
         {defaultMovieList.map((movie) => (
           <div key={movie.id}>
             <p>{movie.name}</p>
