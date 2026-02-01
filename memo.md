@@ -9,3 +9,6 @@
 
 useState
 状態管理するための最も基本的なフック
+
+useEffectでデータ取得は本当はしないほうがいい
+React QueryやSWRなどのライブラリ勉強してね
