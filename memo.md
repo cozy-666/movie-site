@@ -12,3 +12,7 @@ useState
 
 useEffectでデータ取得は本当はしないほうがいい
 React QueryやSWRなどのライブラリ勉強してね
+
+children
+コンポーネントタグの間に記述された内容を参照する特別なprops
+
