@@ -34,7 +34,7 @@ function App() {
     <div>
       <div>
         {defaultMovieList.map((movie) => (
-          <div>
+          <div key={movie.id}>
             <p>{movie.name}</p>
             <img src={movie.image}/>
             <p>{movie.overview}</p>
