@@ -60,7 +60,7 @@ function MovieDetail() {
 
     const fetchMovieDetail = async () => {
         const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${id}?language=ja`,
+            `https://api.themoviedb.org/3/movie/${movieId}?language=ja`,
             {
                 headers: {
                 Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
@@ -68,11 +68,8 @@ function MovieDetail() {
             }
         );
 
-        useEffect(() => {
-            fetchMovieDetail();
-        }, []);
-
         const data = (await response.json()) as MovieDetailJson;
+        console.log(data);
         setMovie({
             id: data.id,
             original_title: data.original_title,
@@ -87,21 +84,26 @@ function MovieDetail() {
             ),
         });
     };
+    useEffect(() => {
+        fetchMovieDetail();
+    }, []);
 
     return (
         <div>
-            <div>
-                <h2>{movie.original_title}</h2>
-                <img 
-                    src={`https://media.themoviedb.org/t/p/w600_and_h900_face${movie.poster_path}`}
-                />
-                <p>{movie.overview}</p>
-                <p>{movie.year}</p>
-                <p>{movie.rating}</p>
-                <p>{movie.runtime}</p>
-                <p>{movie.score}</p>
-                <p>{movie.genres}</p>
-            </div>
+            {movie && (
+                <div>
+                    <h2>{movie.original_title}</h2>
+                    <img 
+                        src={`https://media.themoviedb.org/t/p/w600_and_h900_face${movie.poster_path}`}
+                    />
+                    <p>{movie.overview}</p>
+                    <p>{movie.year}</p>
+                    <p>{movie.rating}</p>
+                    <p>{movie.runtime}</p>
+                    <p>{movie.score}</p>
+                    <p>{movie.genres}</p>
+                </div>
+            )}
         </div>
     )
 };
