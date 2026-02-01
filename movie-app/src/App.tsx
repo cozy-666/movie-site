@@ -28,11 +28,14 @@ function App() {
       overview: "スティーブン・スピルバーグとロバート・ゼメキスが贈るSFアドベンチャーシリーズ第1弾。高校生のマーティは、科学者・ドクの発明したタイムマシン・デロリアンで過去にタイムスリップしてしまう。",
     }
 
-  ]
+  ];
+  //const: 再代入できない
+  //var: 再代入可能
+  var keyword ="";
 
   return (
     <div>
-      <div>
+      <input type="text" />
         {defaultMovieList.map((movie) => (
           <div key={movie.id}>
             <p>{movie.name}</p>
@@ -40,7 +43,6 @@ function App() {
             <p>{movie.overview}</p>
           </div>
         ))}
-      </div>
     </div>
   )
 }
